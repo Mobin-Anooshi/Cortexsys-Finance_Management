@@ -3,4 +3,8 @@ from . import views
 
 
 app_name = "accounts"
-urlpatterns = []
+urlpatterns = [
+    path('register/',views.UserRegisterAPIView.as_view()),
+    path('login/',views.UserLoginAPIView.as_view())
+
+]
