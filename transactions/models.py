@@ -5,6 +5,7 @@ from budgets.models import Budget
 from django.utils import timezone
 
 
+
 class Transaction(models.Model):
 
     TYPE_CHOICES = [

@@ -18,6 +18,10 @@ class UserRegisterSerializers(serializers.ModelSerializer):
             password=validated_data['password']
         )
 
+    def validate_username(self,value):
+        if 'admin' == value:
+            raise serializers.ValidationError('username cant be admin')
+        return value
 
 class UserLoginSerializers(serializers.Serializer):
     username = serializers.CharField(required=True)
@@ -28,3 +32,18 @@ class UserLoginSerializers(serializers.Serializer):
         if user and user.is_active:
             return user
         raise serializers.ValidationError('username and password is invalid')
+
+
+
+
+
+
+    # def validate_username(self,value):
+    #     if value == 'admin':
+    #         raise serializers.ValidationError('username cant be admin')
+    #     return value
+    #
+    # def validate(self, data):
+    #     if data['password'] != data['password2']:
+    #         raise serializers.ValidationError('password must match')
+    #     return data

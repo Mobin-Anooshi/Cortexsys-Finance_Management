@@ -11,7 +11,7 @@ class BudgetAPIView(viewsets.ViewSet):
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticated]
     queryset = Budget.objects.all()
-
+    serializer_class = BudgetSerializers
     def list(self, request):
         data = self.queryset.filter(user=request.user)
         ser_data = BudgetSerializers(instance=data, many=True)

@@ -11,6 +11,7 @@ from rest_framework.permissions import IsAuthenticated
 class TransactionAPIView(viewsets.ViewSet):
     permission_classes = [IsAuthenticated]
     queryset = Transaction.objects.all()
+    serializer_class = TransactionSerializers
 
     def list(self, request):
         data = self.queryset.filter(user=request.user)

@@ -9,8 +9,9 @@ from rest_framework_simplejwt.tokens import RefreshToken
 
 
 class UserRegisterAPIView(APIView):
+    serializer_class = UserRegisterSerializers
     def post(self,request):
-        ser_data = UserRegisterSerializers(data=request.POST)
+        ser_data = UserRegisterSerializers(data=request.data)
         if ser_data.is_valid():
             ser_data.create(ser_data.validated_data)
             return Response(data=ser_data.data,status=status.HTTP_201_CREATED)
