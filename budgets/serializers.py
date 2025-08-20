@@ -9,6 +9,6 @@ class BudgetSerializers(serializers.ModelSerializer):
         model = Budget
         fields = '__all__'
         extra_kwargs = {
-            'end_time':{'required':True}
+            'end_date':{'required':True}
         }
         read_only_fields = ('user',)
