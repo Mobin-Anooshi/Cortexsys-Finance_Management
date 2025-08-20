@@ -63,7 +63,6 @@ def test_user_register_success(api_client, user_data):
     assert User.objects.first().username == user_data['username']
     assert 'password' not in response.data
 
-# if admin
 @pytest.mark.django_db
 def test_user_username_admin(api_client):
     from accounts.models import User
