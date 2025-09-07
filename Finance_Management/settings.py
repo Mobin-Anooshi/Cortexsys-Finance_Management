@@ -51,9 +51,11 @@ INSTALLED_APPS = [
     "rest_framework",
     "rest_framework_simplejwt",
     'drf_spectacular',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -62,7 +64,7 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
-
+CORS_ALLOW_ALL_ORIGINS=True
 ROOT_URLCONF = "Finance_Management.urls"
 
 TEMPLATES = [
@@ -89,13 +91,14 @@ WSGI_APPLICATION = "Finance_Management.wsgi.application"
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ.get('DEV_DB_NAME'),
-        'USER': os.environ.get('DEV_DB_USER'),
-        'PASSWORD': os.environ.get('DEV_DB_PASSWORD'),
-        'HOST': os.environ.get('DEV_DB_HOST'),
-        'PORT': os.environ.get('DEV_DB_PORT'),
+        'NAME': os.getenv("DB_NAME", "postgres"),
+        'USER': os.getenv("DB_USER", "postgres"),
+        'PASSWORD': os.getenv("DB_PASSWORD", "postgres"),
+        'HOST': os.getenv("DB_HOST", "db"),
+        'PORT': os.getenv("DB_PORT", "5432"),
     }
 }
+
 
 
 # Password validation
